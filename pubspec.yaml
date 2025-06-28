@@ -1,0 +1,39 @@
+name: mental_health_ai
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Core dependencies
+  cupertino_icons: ^1.0.8
+  supabase_flutter: ^2.9.1
+  flutter_dotenv: ^5.2.1
+  google_fonts: ^6.2.1
+  email_validator: ^3.0.0
+  http: ^1.4.0
+  lottie: ^3.3.1
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - .env   # <-- This is the important addition for flutter_dotenv on web
+    - assets/animations/happy.json
+    - assets/animations/sad.json
+    - assets/animations/angry.json
+    - assets/animations/fear.json
+    - assets/animations/love.json
