@@ -125,8 +125,9 @@ class _HomepageState extends State<Homepage> {
     }
 
     return Scaffold(
+          backgroundColor: Color(0xFFE3F2F9),
       appBar: AppBar(
-        title: const Text("Homepage"),
+       
         actions: [
           IconButton(
             onPressed: _showProfileDialog,
@@ -139,16 +140,13 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Welcome ${fullName ?? 'User'}!",
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreen()));
-            }, 
-            child: Text("Open chat")
-            )
-            ,
+            
+            // ElevatedButton(onPressed: (){
+            // Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreen()));
+            // }, 
+            // child: Text("Open chat")
+            // )
+            // ,
 
             if (_errorLoadingProfile) ...[
               const SizedBox(height: 20),

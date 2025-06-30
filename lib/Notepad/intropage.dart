@@ -8,15 +8,21 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCEFEF),
+   backgroundColor: Color(0xFFE3F2F9),
+  
+
+
+
+
       body: Center(
         child: Container(
-          margin: const EdgeInsets.all(24),
+          margin: const EdgeInsets.all(40),
           padding: const EdgeInsets.all(24),
           height: 700,
-          width: 700,
+          width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white,
+           color: Color(0xFFF5FAFD),
+
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepai.dart';
+import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepsection.dart';
+import 'package:mental_health_ai/HomePageDesign/SleepSection/sleeptabsection.dart';
+import 'package:mental_health_ai/HomePageDesign/wellnesssection.dart';
 import 'package:mental_health_ai/Notepad/intropage.dart';
 import 'package:mental_health_ai/authentication/authselectionpage.dart';
 import 'package:mental_health_ai/authentication/signuppage.dart';
 import 'package:mental_health_ai/homepage.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mental_health_ai/HomePageDesign/homepage1.dart';
 import 'package:mental_health_ai/mooddetection/moodquizpage.dart';
 import 'package:mental_health_ai/onboardingscreen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -33,8 +38,12 @@ class MyApp extends StatelessWidget {
     final user=supabase.auth.currentUser;//check if the user session exists
    return MaterialApp(
     debugShowCheckedModeBanner: false,
-  //  home: user!=null? Homepage():Authselectionpage(),
-  home: IntroPage(),
+   // home: user!=null? Homepage():Authselectionpage(),
+//  home: IntroPage(),
+//home: SleepTabSection()
+
+//home: SleepSection(),
+home: SleepSection(),
    );
   }
 }
