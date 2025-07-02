@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:mental_health_ai/HomePageDesign/InnerCompass/innercompasssection.dart';
+import 'package:mental_health_ai/HomePageDesign/MoodSection/dailymood.dart';
+import 'package:mental_health_ai/HomePageDesign/MoodSection/moodsectionopening.dart';
+import 'package:mental_health_ai/HomePageDesign/MoodSection/selectionscreen.dart';
 import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepai.dart';
 import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepsection.dart';
 import 'package:mental_health_ai/HomePageDesign/SleepSection/sleeptabsection.dart';
@@ -18,6 +24,8 @@ Future<void> main() async {
 
 //loading my env variables
 await dotenv.load();
+await Hive.initFlutter();
+await Hive.openBox('mood_history');
 
 //initialize supbase
 await Supabase.initialize(
@@ -43,7 +51,9 @@ class MyApp extends StatelessWidget {
 //home: SleepTabSection()
 
 //home: SleepSection(),
-home: SleepSection(),
+//home:Homepage1(),
+//home: SelectionScreen(),
+home: DailyMood(),
    );
   }
 }

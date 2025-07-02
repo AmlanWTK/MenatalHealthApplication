@@ -1,6 +1,7 @@
 // 📄 wellness_section.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mental_health_ai/HomePageDesign/InnerCompass/innercompasssection.dart';
 import 'dart:ui';
 
 import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepsection.dart'; // 👈 Needed for blur effect
@@ -11,7 +12,7 @@ class WellnessSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 600,
+      height: 500,
       width: double.infinity,
       child: Stack(
         children: [
@@ -77,12 +78,13 @@ class WellnessSection extends StatelessWidget {
                   title: "Inner Compass.",
                   description: "Find balance and confidence through life’s highs and lows.",
                   icon: Icons.eco,
-                  gradientColors: [
+                  gradientColors:
+                   [
                     Colors.green.shade200,
                     Colors.white70,
                     Colors.transparent
                   ],
-                  onTap: () => Navigator.pushNamed(context, '/mindfulness'),
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>InnerCompassSection())),
                 ),
               ],
             ),

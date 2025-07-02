@@ -21,6 +21,21 @@ dependencies:
   lottie: ^3.3.1
   intl: ^0.20.2
 
+  #for audio
+  just_audio: ^0.10.4
+  just_audio_background: ^0.0.1-beta.17
+
+  #for icon
+  flutter_svg: ^2.2.0
+
+  #for calender
+  table_calendar: ^3.2.0
+
+  #for storing data
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -31,9 +46,13 @@ flutter:
   uses-material-design: true
 
   assets:
-    - .env   # <-- This is the important addition for flutter_dotenv on web
+    - .env
     - assets/animations/happy.json
     - assets/animations/sad.json
     - assets/animations/angry.json
     - assets/animations/fear.json
     - assets/animations/love.json
+    - assets/icons/
+    - assets/data/icon_library.json
+    - assets/animation/
+

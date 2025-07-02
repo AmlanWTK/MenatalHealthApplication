@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mental_health_ai/HomePageDesign/MoodSection/moodsectionopening.dart';
 import 'package:mental_health_ai/HomePageDesign/wellnesssection.dart';
 
 class Homepage1 extends StatefulWidget {
@@ -90,8 +91,29 @@ bool _isScrolled=false;
               textAlign: TextAlign.center,
             ),
 SizedBox(height: 40,),
-           WellnessSection()
+           WellnessSection(),
+          SizedBox(height: 40,),
              
+             Text("A Space For Your Feelings",
+             style: GoogleFonts.playfairDisplay(
+              fontSize: 38,
+              fontWeight: FontWeight.bold,
+                color: Color(0xFF7B4B42),
+              ),
+              textAlign: TextAlign.center,
+             ),
+              const SizedBox(height: 16),
+             Text(
+              " This is your emotional safe zone",
+              style: GoogleFonts.dancingScript(
+                fontSize: 27,
+                color: Color(0xFF7B4B42),
+                fontWeight: FontWeight.bold
+              ),
+              textAlign: TextAlign.center,
+            ),
+             SizedBox(height: 40,),
+             Moodsectionopening()
           ],
         ),
       ),
