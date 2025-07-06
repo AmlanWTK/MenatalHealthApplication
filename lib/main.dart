@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mental_health_ai/Emergency/emergencypage.dart';
+import 'package:mental_health_ai/GratitudeWall/gratitideinputtest.dart';
+import 'package:mental_health_ai/GratitudeWall/gratitudeopeningsection.dart';
+import 'package:mental_health_ai/GratitudeWall/gratitudewall.dart';
+import 'package:mental_health_ai/HomePageDesign/InnerCompass/innercompassai.dart';
+import 'package:mental_health_ai/HomePageDesign/InnerCompass/innercompassexercise.dart';
 import 'package:mental_health_ai/HomePageDesign/InnerCompass/innercompasssection.dart';
 import 'package:mental_health_ai/HomePageDesign/MoodSection/dailymood.dart';
 import 'package:mental_health_ai/HomePageDesign/MoodSection/moodsectionopening.dart';
@@ -10,6 +16,7 @@ import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepsection.dart';
 import 'package:mental_health_ai/HomePageDesign/SleepSection/sleeptabsection.dart';
 import 'package:mental_health_ai/HomePageDesign/wellnesssection.dart';
 import 'package:mental_health_ai/Notepad/intropage.dart';
+import 'package:mental_health_ai/Notepad/notepadsection.dart';
 import 'package:mental_health_ai/authentication/authselectionpage.dart';
 import 'package:mental_health_ai/authentication/signuppage.dart';
 import 'package:mental_health_ai/homepage.dart';
@@ -46,14 +53,30 @@ class MyApp extends StatelessWidget {
     final user=supabase.auth.currentUser;//check if the user session exists
    return MaterialApp(
     debugShowCheckedModeBanner: false,
-   // home: user!=null? Homepage():Authselectionpage(),
+   // home: user!=null? GratitudeEntryPage():Authselectionpage(),
+  // home: GratitudeEntryPage(),
+  //home: Gratitudeopeningsection(),
+ //home: Homepage1(),
+ home: InnerCompassSection(),
+ //home: Innercompassexercise(),
+ //home: Emergencypage(),
 //  home: IntroPage(),
 //home: SleepTabSection()
 
 //home: SleepSection(),
-//home:Homepage1(),
+
+
+//home:NotePadSection(),
+
+//home: Emergencypage(),
+//home: GratitudeWall(),
+//home: GratitudeInputTest(),
+
+
+
+
 //home: SelectionScreen(),
-home: DailyMood(),
+//home: DailyMood(),
    );
   }
 }

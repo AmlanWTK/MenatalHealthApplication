@@ -34,6 +34,11 @@ class _ActivityEntryScreenState extends State<ActivityEntryScreen> {
     'Sleep': ['good sleep', 'medium sleep', 'bad sleep', 'sleep early'],
     'Hobbies': ['music', 'read', 'pets', 'relax', 'coding', 'travel'],
     'Health': ['exercise', 'hydrated', 'healthy-food', 'meditation'],
+    "Social": ["party", "friends", "family"],
+    "Weather": ["heat", "snow", "rain", "clouds", "sunny"],
+    "Chores": ["laundry", "cooking", "cleaning", "shopping"],
+    "School": ["groupproject", "exam", "homework", "study", "class"]
+
   };
 
   // Track selected items by category

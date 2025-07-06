@@ -92,6 +92,10 @@ final List<Map<String, dynamic>> tabContent = [
         margin: EdgeInsets.symmetric(horizontal: 190, vertical: 60),
         padding: EdgeInsets.symmetric(horizontal: 24,vertical: 0),
         decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.blueGrey,
+            width: 5
+          ),
           gradient: LinearGradient(colors: [
               Colors.green.shade200,  // one greenish shade
   Colors.teal.shade100,         // soft white
@@ -140,7 +144,7 @@ final List<Map<String, dynamic>> tabContent = [
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.dancingScript(
                                     fontSize: 26,
-                                     color: Colors.black,
+                                     color: Colors.blueGrey.shade700,
                                      fontWeight: FontWeight.bold,
                                      decoration: TextDecoration.none,
                                      height: 1.6

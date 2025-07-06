@@ -36,6 +36,9 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.1.5
 
+  #for making call
+  url_launcher: ^6.3.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -52,7 +55,10 @@ flutter:
     - assets/animations/angry.json
     - assets/animations/fear.json
     - assets/animations/love.json
+    - assets/animations/meditation1.json
+    - assets/animations/meditation2.json
     - assets/icons/
     - assets/data/icon_library.json
     - assets/animation/
+    - assets/gratitudecard/
 

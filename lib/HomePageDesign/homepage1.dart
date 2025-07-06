@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mental_health_ai/Emergency/emergencypage.dart';
+import 'package:mental_health_ai/GratitudeWall/gratitudeopeningsection.dart';
 import 'package:mental_health_ai/HomePageDesign/MoodSection/moodsectionopening.dart';
 import 'package:mental_health_ai/HomePageDesign/wellnesssection.dart';
+import 'package:mental_health_ai/Notepad/notepadsection.dart';
 
 class Homepage1 extends StatefulWidget {
   const Homepage1({super.key});
@@ -85,7 +88,7 @@ bool _isScrolled=false;
               "A journey inward, where healing begins.",
               style: GoogleFonts.dancingScript(
                 fontSize: 27,
-                color: Color(0xFF7B4B42),
+                color: Colors.blueGrey,
                 fontWeight: FontWeight.bold
               ),
               textAlign: TextAlign.center,
@@ -107,13 +110,68 @@ SizedBox(height: 40,),
               " This is your emotional safe zone",
               style: GoogleFonts.dancingScript(
                 fontSize: 27,
-                color: Color(0xFF7B4B42),
+               color: Colors.blueGrey,
                 fontWeight: FontWeight.bold
               ),
               textAlign: TextAlign.center,
             ),
              SizedBox(height: 40,),
-             Moodsectionopening()
+             Moodsectionopening(),
+              SizedBox(height: 40,),
+             Text("In the Quiet Corners of My Mind: A Personal Notebook of Thoughts and Musings",
+             style: GoogleFonts.playfairDisplay(
+              fontSize:38,
+              color: Color(0xFF7B4B42),
+              fontWeight: FontWeight.bold
+              ),
+                
+
+             ),
+               SizedBox(height: 16),
+               Text(" Where ideas whisper, emotions breathe, and each page holds a piece of me,",
+               style: GoogleFonts.dancingScript(
+                fontSize: 27,
+                 color: Colors.blueGrey,
+                fontWeight: FontWeight.bold
+                ),
+               ),
+               SizedBox(height: 20,),
+               NotePadSection(),
+              SizedBox(height: 40,),
+              Text('Things I’m Grateful For, Big and Small, That Make Life Magical',
+              style: GoogleFonts.playfairDisplay(
+                fontSize: 38,
+                color: Color(0xFF7B4B42),
+                fontWeight: FontWeight.bold
+                ),
+              ),
+               SizedBox(height: 16),
+               Text('Tiny joys, warm feelings, and everything that makes me smile.',
+               style: GoogleFonts.dancingScript(
+                fontSize: 27,
+                color: Colors.blueGrey,
+                fontWeight: FontWeight.bold
+                ),
+               ),
+               Gratitudeopeningsection(),
+               SizedBox(height: 40,),
+               Text('When Everything Feels Too Much and I Need Help Right Away',
+               style: GoogleFonts.playfairDisplay(
+                fontSize: 38,
+                color: Color(0xFF7B4B42),
+                fontWeight: FontWeight.bold
+                ),
+               ),
+               SizedBox(height: 16,),
+               Text('This is a safe place to find calm, support, and someone who cares',
+                style: GoogleFonts.dancingScript(
+                fontSize: 27,
+                color: Colors.blueGrey,
+                fontWeight: FontWeight.bold
+                ),
+               ),
+             
+               Emergencypage()
           ],
         ),
       ),

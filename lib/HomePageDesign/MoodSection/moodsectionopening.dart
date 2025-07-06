@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mental_health_ai/HomePageDesign/MoodSection/dailymood.dart';
 
 class Moodsectionopening extends StatelessWidget {
   const Moodsectionopening({super.key});
@@ -23,11 +24,11 @@ class Moodsectionopening extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Image.network(
-                    'https://i.imgur.com/WfZArVG.jpeg',
+                    'https://i.imgur.com/hVm4hxW.jpeg',
                     fit: BoxFit.cover,
                   ),
                   BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                    filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
                     child: Container(
                       color: Colors.black.withOpacity(0.05),
                     ),
@@ -44,22 +45,21 @@ class Moodsectionopening extends StatelessWidget {
               child: Container(
                 height: 400,
                 decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blueGrey,
+                    width: 5
+                  ),
                   borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(
-                    colors: [
-                      const Color(0xFFB2EBF2), // Calm cyan
-                      Colors.white70,
-                      Colors.transparent
-                    ],
-                    
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 8,
-                      offset: Offset(4, 4),
-                    )
-                  ],
+  colors: [
+   Color(0xFFFFF9E5), // Buttery pastel yellow
+Color(0xFFFFFDF9), // Creamy white
+
+  ],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+),
+
                 ),
                 child: Row(
                   children: [
@@ -108,7 +108,7 @@ class Moodsectionopening extends StatelessWidget {
                               style: GoogleFonts.dancingScript(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Colors.blueGrey,
                                 decoration: TextDecoration.none,
                               ),
                             ),
@@ -116,7 +116,11 @@ class Moodsectionopening extends StatelessWidget {
 
                             // 🔘 Button
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                 
+                                 Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyMood()));
+
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blueGrey.shade700,
                                 padding: const EdgeInsets.symmetric(

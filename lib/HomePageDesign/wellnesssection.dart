@@ -5,7 +5,6 @@ import 'package:mental_health_ai/HomePageDesign/InnerCompass/innercompasssection
 import 'dart:ui';
 
 import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepsection.dart'; // 👈 Needed for blur effect
-
 class WellnessSection extends StatelessWidget {
   const WellnessSection({super.key});
 
@@ -17,27 +16,35 @@ class WellnessSection extends StatelessWidget {
       child: Stack(
         children: [
           // 🌄 Background Image with Blur - fixed height 500
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 500,
-            child: ClipRRect(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.network(
-                    width: double.infinity,
-                    "https://i.imgur.com/WfZArVG.jpeg",
-                    fit: BoxFit.cover,
-                  ),
-                  BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                    child: Container(
-                      color: Colors.black.withOpacity(0.05),
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.network(
+                      "https://i.imgur.com/WfZArVG.jpeg",
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                ],
+                    BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                      child: Container(
+                        color: Colors.black.withOpacity(0.05),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Colors.teal,
+                          width: 5,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -47,12 +54,12 @@ class WellnessSection extends StatelessWidget {
             top: 100,
             left: 220,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _buildCard(
                   context,
                   title: "Stress Less",
-                  description: "Ease stress and anxiety—one breath, one moment, one step at a time.",
+                  description:
+                      "Ease stress and anxiety—one breath, one moment, one step at a time.",
                   icon: Icons.healing,
                   gradientColors: [
                     Colors.blue.shade200,
@@ -64,36 +71,44 @@ class WellnessSection extends StatelessWidget {
                 _buildCard(
                   context,
                   title: "Sleep more.",
-                  description: "Sleep comes softly. Stay wrapped in calm all night long.",
+                  description:
+                      "Sleep comes softly. Stay wrapped in calm all night long.",
                   icon: Icons.bedtime,
                   gradientColors: [
                     Colors.purple.shade200,
                     Colors.white70,
                     Colors.transparent
                   ],
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>SleepSection())),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SleepSection())),
                 ),
                 _buildCard(
                   context,
                   title: "Inner Compass.",
-                  description: "Find balance and confidence through life’s highs and lows.",
+                  description:
+                      "Find balance and confidence through life’s highs and lows.",
                   icon: Icons.eco,
-                  gradientColors:
-                   [
+                  gradientColors: [
                     Colors.green.shade200,
                     Colors.white70,
                     Colors.transparent
                   ],
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>InnerCompassSection())),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InnerCompassSection())),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
 
 Widget _buildCard(
   BuildContext context, {
@@ -123,8 +138,13 @@ Widget _buildCard(
               color: Colors.black12,
               blurRadius: 10,
               offset: Offset(0, 6),
-            )
+            ),
+          
           ],
+          border: Border.all(
+            color: Colors.cyan,
+            width: 3
+          )
         ),
         child: Column(
           children: [

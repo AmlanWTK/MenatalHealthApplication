@@ -94,7 +94,12 @@ class _SleepTabSectionState extends State<SleepTabSection> {
           margin: const EdgeInsets.symmetric(horizontal:  190,vertical: 60),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
           decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.blueGrey,
+              width: 5
+            ),
             gradient: LinearGradient(
+              
               colors: [
                Colors.blue.shade100,
                     Colors.white70,
@@ -229,6 +234,10 @@ class _SleepTabSectionState extends State<SleepTabSection> {
   child: Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     decoration: BoxDecoration(
+      border: Border.all(
+        color: Colors.cyan.shade100,
+        width: 3
+      ),
       color: Colors.grey.shade300,
       borderRadius: BorderRadius.circular(32),
       boxShadow: [

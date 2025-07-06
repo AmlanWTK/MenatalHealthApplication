@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mental_health_ai/GratitudeWall/gratitideinputtest.dart';
 import 'package:mental_health_ai/homepage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -51,7 +52,7 @@ class _LogInPageState extends State<LogInPage> {
 
 
         // 👉 Here you can navigate to Homepage after successful login
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Homepage()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>GratitudeEntryPage()));
       }
     } on AuthException catch (e) {
       // Supabase-specific authentication error

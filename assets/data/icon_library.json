@@ -20,6 +20,109 @@
   { "name": "coding", "path": "assets/icons/coding-svgrepo-com.svg", "category": "Hobbies", "tags": ["code", "program", "tech"] },
   { "name": "dancing", "path": "assets/icons/dancing-motion-svgrepo-com.svg", "category": "Hobbies", "tags": ["dance", "move", "rhythm"] },
 
+{
+    "name": "party",
+    "path": "assets/icons/party.svg",
+    "category": "Social",
+    "tags": ["celebration", "friends", "fun"]
+  },
+  {
+    "name": "friends",
+    "path": "assets/icons/friends.svg",
+    "category": "Social",
+    "tags": ["celebration", "friends", "fun"]
+  },
+  {
+    "name": "family",
+    "path": "assets/icons/family.svg",
+    "category": "Social",
+    "tags": ["celebration", "friends", "fun"]
+  },
+  {
+    "name": "heat",
+    "path": "assets/icons/heat.svg",
+    "category": "Weather",
+    "tags": ["hot", "sun", "temperature"]
+  },
+  {
+    "name": "snow",
+    "path": "assets/icons/snow.svg",
+    "category": "Weather",
+    "tags": ["cold", "winter", "flake"]
+  },
+  {
+    "name": "rain",
+    "path": "assets/icons/rain.svg",
+    "category": "Weather",
+    "tags": ["wet", "storm", "cloud"]
+  },
+  {
+    "name": "clouds",
+    "path": "assets/icons/clouds.svg",
+    "category": "Weather",
+    "tags": ["sky", "white", "fluffy"]
+  },
+  {
+    "name": "sunny",
+    "path": "assets/icons/sunny.svg",
+    "category": "Weather",
+    "tags": ["bright", "day", "clear"]
+  },
+  {
+    "name": "laundry",
+    "path": "assets/icons/laundry.svg",
+    "category": "Chores",
+    "tags": ["cleaning", "clothes", "washing"]
+  },
+  {
+    "name": "cooking",
+    "path": "assets/icons/cooking.svg",
+    "category": "Chores",
+    "tags": ["food", "kitchen", "preparing"]
+  },
+  {
+    "name": "cleaning",
+    "path": "assets/icons/cleaning.svg",
+    "category": "Chores",
+    "tags": ["tidy", "organize", "house"]
+  },
+  {
+    "name": "shopping",
+    "path": "assets/icons/shopping.svg",
+    "category": "Chores",
+    "tags": ["buy", "store", "groceries"]
+  },
+  {
+    "name": "groupproject",
+    "path": "assets/icons/groupproject.svg",
+    "category": "School",
+    "tags": ["teamwork", "assignment", "collaboration"]
+  },
+  {
+    "name": "exam",
+    "path": "assets/icons/exam.svg",
+    "category": "School",
+    "tags": ["test", "study", "assessment"]
+  },
+  {
+    "name": "homework",
+    "path": "assets/icons/homework.svg",
+    "category": "School",
+    "tags": ["assignment", "study", "task"]
+  },
+  {
+    "name": "study",
+    "path": "assets/icons/study.svg",
+    "category": "School",
+    "tags": ["learning", "reading", "focus"]
+  },
+  {
+    "name": "class",
+    "path": "assets/icons/class.svg",
+    "category": "School",
+    "tags": ["lecture", "teacher", "students"]
+  },
+
 
   { "name": "gaming", "path": "gaming-controller-gamepad-joystick-game-console-svgrepo-com.svg", "category": "Hobbies", "tags": ["game", "play", "racing"] },
   { "name": "singing", "path": "assets/icons/singing-svgrepo-com.svg", "category": "Hobbies", "tags": ["sing", "music", "voice"] },
