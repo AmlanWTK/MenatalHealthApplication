@@ -1,9 +1,11 @@
 
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_health_ai/GratitudeWall/gratitudewallpage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class GratitudeEntryPage extends StatefulWidget {
   const GratitudeEntryPage({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class GratitudeEntryPage extends StatefulWidget {
 }
 
 class _GratitudeEntryPageState extends State<GratitudeEntryPage> {
+
+  bool _isVisible=false;
   final _textController = TextEditingController();
   bool _isPublic = false;
   String? _selectedCategory;
@@ -52,7 +56,7 @@ class _GratitudeEntryPageState extends State<GratitudeEntryPage> {
     // Prepare data for Supabase
     final Map<String, dynamic> data = {
       'text': text,
-      'is_public': _isPublic,
+      'is_public': true,
       'category': _selectedCategory,
     };
 
@@ -93,18 +97,53 @@ class _GratitudeEntryPageState extends State<GratitudeEntryPage> {
        backgroundColor:    Colors.green.shade100,
       appBar: AppBar(
         backgroundColor: Colors.green.shade100,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Text('Gratitude Wall Entry',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 38,
-             color: const Color(0xFF7B4B42),
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.none,
+        title:VisibilityDetector(
+          key: Key("grat_page"), 
           
-          ),
-          ),
+           onVisibilityChanged:(info){
+            if(info.visibleFraction> 0.3 && !_isVisible){
+              setState(() {
+                _isVisible=true;
+              });
+            }
+           },
+           child: 
+         Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child:
+          SizedBox(
+                            height: 60,
+                            child: DefaultTextStyle(
+                              style:GoogleFonts.playfairDisplay(
+                                fontSize: 38,
+                                color: const Color(0xFF7B4B42),
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.none
+               
+                                ),
+                              child: _isVisible?
+                             
+                             
+                               AnimatedTextKit(
+                                isRepeatingAnimation: false,
+                                animatedTexts: [
+                                      TypewriterAnimatedText(
+                                        'Notes of Gratitude: A Wall of Kind Words and Bright Moments',
+                                        speed: Duration(milliseconds: 100),
+                                        cursor: '|'
+                                      )  
+                                ]
+                                ):Text('Notes of Gratitude: A Wall of Kind Words and Bright Moments')
+                              ),
+                           
+                            ),
+
+
+        
         ),
+           ),
+        
+        
         centerTitle: true,
       ),
       body:Center(
@@ -203,74 +242,7 @@ class _GratitudeEntryPageState extends State<GratitudeEntryPage> {
     ),
   ),
 ),
-      
-      //  Padding(
-      //   padding: const EdgeInsets.all(20),
-      //   child: ListView(
-      //     children: [
-      //       const Text(
-      //         'What are you grateful for today?',
-      //         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-      //       ),
-      //       const SizedBox(height: 12),
-      //       TextField(
-      //         controller: _textController,
-      //         maxLines: 4,
-      //         decoration: InputDecoration(
-      //           hintText: 'e.g. I’m grateful for a peaceful morning walk.',
-      //           border: OutlineInputBorder(
-      //             borderRadius: BorderRadius.circular(12),
-      //           ),
-      //           contentPadding: const EdgeInsets.all(16),
-      //         ),
-      //       ),
-      //       const SizedBox(height: 16),
-      //       Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //         children: [
-      //           const Text('Make public (anonymous)?'),
-      //           Switch(
-      //             value: _isPublic,
-      //             onChanged: (val) {
-      //               setState(() {
-      //                 _isPublic = val;
-      //               });
-      //             },
-      //           ),
-      //         ],
-      //       ),
-      //       const SizedBox(height: 12),
-      //       DropdownButtonFormField<String>(
-      //         value: _selectedCategory,
-      //         decoration: const InputDecoration(
-      //           labelText: 'Category (optional)',
-      //           border: OutlineInputBorder(),
-      //         ),
-      //         items: _categories
-      //             .map((cat) => DropdownMenuItem(
-      //                   value: cat,
-      //                   child: Text(cat),
-      //                 ))
-      //             .toList(),
-      //         onChanged: (val) {
-      //           setState(() {
-      //             _selectedCategory = val;
-      //           });
-      //         },
-      //       ),
-      //       const SizedBox(height: 20),
-      //       ElevatedButton.icon(
-      //         icon: const Icon(Icons.favorite, color: Colors.white),
-      //         label: const Text('Submit Gratitude'),
-      //         onPressed: submitGratitudeEntry,
-      //         style: ElevatedButton.styleFrom(
-      //           padding: const EdgeInsets.symmetric(vertical: 16),
-      //           textStyle: const TextStyle(fontSize: 16),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+
     );
   }
 }

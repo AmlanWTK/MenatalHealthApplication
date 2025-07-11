@@ -38,6 +38,10 @@ dependencies:
 
   #for making call
   url_launcher: ^6.3.1
+  #animating text
+  animated_text_kit: ^4.2.3
+  visibility_detector: ^0.4.0+2
+  flutter_animate: ^4.5.2
 
 dev_dependencies:
   flutter_test:
@@ -57,8 +61,32 @@ flutter:
     - assets/animations/love.json
     - assets/animations/meditation1.json
     - assets/animations/meditation2.json
+    - assets/animations/gettingstarted.json
+    - assets/animations/breaktime.json
+    - assets/animations/evening.json
+    - assets/animations/growthpathways.json
+    - assets/animations/mindfulmorning.json
+    - assets/animations/sleeping.json
+    - assets/animations/sleeping1.json
+    - assets/animations/kidsstory.json
+    - assets/animations/soundscapes.json
+    - assets/animations/music.json
+    - assets/animations/sleepmeditation.json
+    - assets/animations/sleepstory.json
+    - assets/animations/calling.json
+    - assets/animations/calling1.json
+    - assets/animations/trackingemotion.json
+    - assets/animations/diary.json
+    - assets/animations/welcome.json
+    - assets/animations/welcome1.json
+    - assets/animations/welcome2.json
+    - assets/animations/
+    - assets/animations/writingpad.json
+    
+
     - assets/icons/
     - assets/data/icon_library.json
     - assets/animation/
     - assets/gratitudecard/
+
 

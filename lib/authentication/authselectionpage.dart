@@ -1,48 +1,168 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mental_health_ai/authentication/loginpage.dart';
 import 'package:mental_health_ai/authentication/signuppage.dart';
 
-class Authselectionpage extends StatelessWidget {
-  const Authselectionpage({super.key});
+class AuthSelectionPage extends StatelessWidget {
+  const AuthSelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color(0xFF305C4E),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Center(child: Text("Mental Health Ai")),
-        ),
-        body: Center(
-          child: Container(
-            height: 400,
-            width: 400,
-            decoration: BoxDecoration(
-              color: const Color(0xFF366C56), 
-              borderRadius: BorderRadius.circular(30)
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(),));
-                  },
-                   child: Text("Sign Up")
+     
+     body: 
+     Center(
+        child: Container(
+          height: 600,
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(color: Colors.cyan.shade100, width: 3),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.cyanAccent.withOpacity(0.3),
+                offset: const Offset(3, 3),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+              BoxShadow(
+                color: Colors.white.withOpacity(0.8),
+                offset: const Offset(-3, -3),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              // Left side: Lottie animation
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 12,
+                        offset: Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Lottie.asset(
+                    'assets/animations/welcome1.json',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+              // Right side: Title, description, buttons
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                   SizedBox(
+                    height: 60,
+                    child: DefaultTextStyle(
+                      style:GoogleFonts.playfairDisplay(
+                        fontSize: 38,color: const Color(0xFF7B4B42),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none
+                ) , 
+                      child: AnimatedTextKit(animatedTexts: [
+                        TypewriterAnimatedText('Welcome to Aranyak',
+                        speed: Duration(milliseconds: 100),
+                        cursor: "|"
+                        )
+                      ])
+                      ),
                    ),
-            
-                   SizedBox(height: 20,),
-            
-                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LogInPage()));
-                    }, 
-                    child: Text("Login Page")
-                    )
-              ],
-            ),
+                      const SizedBox(height: 16),
+                      Text(
+                        "Your personal companion for mental well-being. "
+                        "Track your mood, talk to a chatbot, write journals, and find calm in chaos.",
+                        style: GoogleFonts.dancingScript(
+                          fontSize: 26,
+                          height: 1.6,
+                          color: Colors.blueGrey[700],
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => const SignUpPage()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueGrey,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              elevation: 6,
+                              shadowColor: Colors.blueGrey.withOpacity(0.4),
+                            ),
+                            child: Text(
+                              "Sign Up",
+                              style: GoogleFonts.playfairDisplay(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => const LogInPage()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueGrey,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              elevation: 6,
+                              shadowColor: Colors.blueGrey.withOpacity(0.4),
+                            ),
+                            child: Text(
+                              "Login",
+                              style: GoogleFonts.playfairDisplay(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:visibility_detector/visibility_detector.dart';
 
 class InnerCompassChatAi extends StatefulWidget {
   const InnerCompassChatAi({super.key});
@@ -11,6 +13,7 @@ class InnerCompassChatAi extends StatefulWidget {
 }
 
 class _InnerCompassChatAiState extends State<InnerCompassChatAi> {
+bool _isVisible=false;
   
   // List to hold chat messages (sender, text, timestamp)
   final List<Map<String, dynamic>> _messages = [
@@ -21,13 +24,7 @@ class _InnerCompassChatAiState extends State<InnerCompassChatAi> {
   },
 ];
 
-// final List<String> _suggestionPropmts=[
-// "How can I calm my thoughts?",
-//     "Guide me to sleep.",
-//     "Help me reduce anxiety.",
-//     "I can't fall asleep, what should I do?",
-//     "Give me a breathing exercise.",
-// ];
+
 
 final List<String> _suggestionPrompts = [
   "Guide me through a quick meditation.",
@@ -205,13 +202,50 @@ final List<String> _suggestionPrompts = [
     return Scaffold(
 
       appBar: AppBar(
-        title: Center(child: Text("Whispered Guidance into the Night",
-        style: GoogleFonts.dancingScript(
-        color: const Color(0xFF7B4B42),
-        fontWeight: FontWeight.bold,
-        fontSize: 38
+        title:VisibilityDetector(
+          key: Key("Chat_ai"), 
+        
+          onVisibilityChanged: (info){
+            if (info.visibleFraction > 0.3 && !_isVisible){
+               setState(() {
+                 _isVisible=true;
+               });
+            }
+          },
+          
+          child: _isVisible?
+          
+          
+           Center(child:SizedBox(
+          height: 40,
+          child:  DefaultTextStyle(
+          style:GoogleFonts.dancingScript(
+            fontSize: 38,
+            color: const Color(0xFF7B4B42),
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.none
+            
+          ) , 
+          child: AnimatedTextKit(
+            isRepeatingAnimation: false,
+            animatedTexts: [
+              TypewriterAnimatedText('Whispered Guidance into the Night',
+              speed: Duration(milliseconds: 100),
+              cursor: "|"
+              
+              )
+
+          ])
           ),
-        )),
+        )
+        
+        
+        
+      
+        ):Text('Whispered Guidance into the Night')
+          )
+        
+        ,
         backgroundColor: Colors.white,
       ),
       body: Container(

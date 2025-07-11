@@ -1,10 +1,13 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mental_health_ai/Emergency/emergencypage.dart';
 import 'package:mental_health_ai/GratitudeWall/gratitudeopeningsection.dart';
 import 'package:mental_health_ai/HomePageDesign/MoodSection/moodsectionopening.dart';
 import 'package:mental_health_ai/HomePageDesign/wellnesssection.dart';
 import 'package:mental_health_ai/Notepad/notepadsection.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class Homepage1 extends StatefulWidget {
   const Homepage1({super.key});
@@ -14,9 +17,13 @@ class Homepage1 extends StatefulWidget {
 }
 
 class _Homepage1State extends State<Homepage1> {
+  bool _istypewrting=false;
   
 ScrollController _scrollController=ScrollController();
 bool _isScrolled=false;
+bool _isVisible=false;
+bool _isVisible1=false;
+
 
 @override
   void initState() {
@@ -45,7 +52,7 @@ bool _isScrolled=false;
 
   //Navigation items
   final List<String> leftitems=["Sleep","Stress & Anxiety", "Mindfullness"];
-  final List<String> rightitems=["Screening","Calm Health"];
+  final List<String> rightitems=["NoteBook","Emergency"];
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +66,21 @@ bool _isScrolled=false;
   child: Column(
     children: [
       // 🖼️ Image section
-      SizedBox(
-        height: 400,
-        width: double.infinity,
-        child: Image.network(
-          "https://i.imgur.com/eM1GEls.jpeg",
-          fit: BoxFit.cover,
+      Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+          height: 400,
+          width: double.infinity,
+          child: Image.network(
+            "https://i.imgur.com/eM1GEls.jpeg",
+            fit: BoxFit.cover,
+          ),
+          
         ),
+       
+        ],
+       
       ),
 
       // 📜 Text section BELOW the image
@@ -94,7 +109,9 @@ bool _isScrolled=false;
               textAlign: TextAlign.center,
             ),
 SizedBox(height: 40,),
+
            WellnessSection(),
+           
           SizedBox(height: 40,),
              
              Text("A Space For Your Feelings",
@@ -118,15 +135,44 @@ SizedBox(height: 40,),
              SizedBox(height: 40,),
              Moodsectionopening(),
               SizedBox(height: 40,),
-             Text("In the Quiet Corners of My Mind: A Personal Notebook of Thoughts and Musings",
-             style: GoogleFonts.playfairDisplay(
-              fontSize:38,
-              color: Color(0xFF7B4B42),
-              fontWeight: FontWeight.bold
-              ),
-                
 
-             ),
+
+              VisibilityDetector(
+                key: Key('type_writing'),
+                onVisibilityChanged: (info) {
+                  if(info.visibleFraction>0.3 && !_isVisible){
+                    setState(() {
+                      _isVisible=true;
+                    });
+                  }
+                },
+                child: 
+                SizedBox(
+                  height: 60,
+                  child: DefaultTextStyle(
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize:38,
+                       color: const Color(0xFF7B4B42),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none
+                
+                       ), 
+                    child:_isVisible?
+                    AnimatedTextKit(
+                      isRepeatingAnimation: false,
+                      animatedTexts: [
+                 TypewriterAnimatedText('In the Quiet Corners of My Mind: A Personal Notebook of Thoughts and Musings',
+                 speed: Duration(milliseconds: 100),
+                 cursor: '|'
+                 )
+                    ]
+                    ):Text('In the Quiet Corners of My Mind: A Personal Notebook of Thoughts and Musings')
+                    ),
+                
+                  ),
+              ),
+
+
                SizedBox(height: 16),
                Text(" Where ideas whisper, emotions breathe, and each page holds a piece of me,",
                style: GoogleFonts.dancingScript(
@@ -138,13 +184,41 @@ SizedBox(height: 40,),
                SizedBox(height: 20,),
                NotePadSection(),
               SizedBox(height: 40,),
-              Text('Things I’m Grateful For, Big and Small, That Make Life Magical',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 38,
-                color: Color(0xFF7B4B42),
-                fontWeight: FontWeight.bold
-                ),
+               VisibilityDetector(
+                key: Key('type_writing_1'),
+                onVisibilityChanged: (info) {
+                  if(info.visibleFraction>0.3 && !_isVisible){
+                    setState(() {
+                      _isVisible=true;
+                    });
+                  }
+                },
+                child: SizedBox(
+                  height: 60,
+                  child: DefaultTextStyle(
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize:38,
+                       color: const Color(0xFF7B4B42),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none
+                
+                       ), 
+                    child:_isVisible?
+                    AnimatedTextKit(
+                      isRepeatingAnimation: false,
+                      animatedTexts: [
+                 TypewriterAnimatedText('Things I’m Grateful For, Big and Small, That Make Life Magical',
+                 speed: Duration(milliseconds: 100),
+                 cursor: '|'
+                 )
+                    ]
+                    ):Text('Things I’m Grateful For, Big and Small, That Make Life Magical')
+                    ),
+                
+                  ),
               ),
+
+
                SizedBox(height: 16),
                Text('Tiny joys, warm feelings, and everything that makes me smile.',
                style: GoogleFonts.dancingScript(
@@ -154,14 +228,57 @@ SizedBox(height: 40,),
                 ),
                ),
                Gratitudeopeningsection(),
+
                SizedBox(height: 40,),
-               Text('When Everything Feels Too Much and I Need Help Right Away',
-               style: GoogleFonts.playfairDisplay(
-                fontSize: 38,
-                color: Color(0xFF7B4B42),
-                fontWeight: FontWeight.bold
-                ),
-               ),
+
+               VisibilityDetector(
+                key: Key('type_writing2'),
+                onVisibilityChanged: (info) {
+                  if(info.visibleFraction>0.3 && !_isVisible){
+                    setState(() {
+                      _isVisible1=true;
+                    });
+                  }
+                },
+                child: 
+                SizedBox(
+                  height: 60,
+                  child: DefaultTextStyle(
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize:38,
+                       color: const Color(0xFF7B4B42),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none
+                
+                       ), 
+                    child:_isVisible1?
+                    AnimatedTextKit(
+                      isRepeatingAnimation: false,
+                      animatedTexts: [
+                 TypewriterAnimatedText('When Everything Feels Too Much and I Need Help Right Away',
+                 speed: Duration(milliseconds: 100),
+                 cursor: '|'
+                 )
+                    ]
+                    ):Text('When Everything Feels Too Much and I Need Help Right Away')
+                    ),
+                
+                  ),
+              ),
+
+
+
+              //  Text('When Everything Feels Too Much and I Need Help Right Away',
+              //  style: GoogleFonts.playfairDisplay(
+              //   fontSize: 38,
+              //   color: Color(0xFF7B4B42),
+              //   fontWeight: FontWeight.bold
+              //   ),
+              //  ),
+
+
+
+
                SizedBox(height: 16,),
                Text('This is a safe place to find calm, support, and someone who cares',
                 style: GoogleFonts.dancingScript(
@@ -182,6 +299,7 @@ SizedBox(height: 40,),
 
   
 ),
+
 // 🌟 Smooth AppBar reveal with gradient background
 Positioned(
   top: 0,
@@ -233,7 +351,7 @@ Positioned(
                     ),
                     padding: const EdgeInsets.all(10),
                     child: Text(
-                      "Aranya",
+                      "Aranyak",
                       style: GoogleFonts.dancingScript(
                         color: Colors.grey,
                         fontSize: 30,
@@ -278,6 +396,9 @@ Positioned(
           ),
         ),
       ),
+
+
+
     ],
   ),
 ),

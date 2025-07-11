@@ -1,15 +1,21 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:mental_health_ai/GratitudeWall/gratitideinputtest.dart';
+import 'package:mental_health_ai/GratitudeWall/gratitideentrypage.dart';
 import 'package:mental_health_ai/GratitudeWall/gratitudecard.dart';
+import 'package:mental_health_ai/VisibilityDetector/slidefadeinonvisible.dart';
 
 class Gratitudeopeningsection extends StatelessWidget {
   const Gratitudeopeningsection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SlideFadeInOnVisible(
+    duration: Duration(milliseconds: 800), 
+    offset: Offset(0,0.2), 
+    curve: Curves.easeOut,
+     visibilityKey: Key('gratitude_key'),
+     child: Container(
       margin: EdgeInsets.all(16),
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -46,7 +52,10 @@ class Gratitudeopeningsection extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ),
+     );
+    
+    
   }
 
   Widget _buildCard(BuildContext context, String lottie, String title, String desc) {

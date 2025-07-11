@@ -1,221 +1,269 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mental_health_ai/Navbar/customnavbar.dart';
 import 'package:mental_health_ai/Notepad/journaleditorpage.dart';
+ // ✅ Add this line
 
 class JournalPage extends StatefulWidget {
-
-   const JournalPage({super.key});
+  const JournalPage({super.key});
 
   @override
   State<JournalPage> createState() => _JournalPageState();
 }
 
 class _JournalPageState extends State<JournalPage> {
+  final List<Map<String, String>> entries = [];
 
-  //aa list to store a;; the journal entries 
-final List<Map<String, String>> entries=[];
-//this function will trigger when someone will click add icom
-Future<void> _openEditior()async{
-final result=await Navigator.push(context, MaterialPageRoute(builder: (_)=>JournalEditorPage()));
+  // ✅ For scroll-aware navbar
+  final ScrollController _scrollController = ScrollController();
+  bool _isScrolled = false;
+  bool _isVisible=false;
 
-if(result!=null || result is Map<String,String>){
-  setState(() {
-    entries.add(result);
-  });
-}
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      final scrolled = _scrollController.offset > 20;
+      if (scrolled != _isScrolled) {
+        setState(() => _isScrolled = scrolled);
+      }
+    });
+  }
 
-}
+  Future<void> _openEditior() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => JournalEditorPage()),
+    );
+
+    if (result != null || result is Map<String, String>) {
+      setState(() {
+        entries.add(result);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFE3F2F9),
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.all(30),
-          margin: EdgeInsets.all(24),
-          height: 700,
-          width: double.infinity,
-          decoration: BoxDecoration(
-             color: Color(0xFFF5FAFD),
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 12,
-                offset: const Offset(0, 6),
-              ),
-            ],
-          ),
+      backgroundColor: const Color(0xFFE3F2F9),
+     body: SafeArea(
+  child: LayoutBuilder(
+    builder: (context, constraints) {
+      return SingleChildScrollView(
+        controller: _scrollController,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraints.maxHeight),
+          child: IntrinsicHeight(
+            child: Column(
+              children: [
+                // ✅ Top navbar
+                CustomNavBar(isScrolled: _isScrolled),
 
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Welcome\nBack!",
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 38,
-              color: Color(0xFF5B3E37),
-                     fontWeight: FontWeight.bold
+                // ✅ Page title
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: SizedBox(
+                    height: 60,
+                    child: DefaultTextStyle(
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: 38,
+                        color: const Color(0xFF5B3E37),
+                        fontWeight: FontWeight.bold,
+                      ),
+                      child: AnimatedTextKit(
+                        isRepeatingAnimation: false,
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            'Your Own Journal Page',
+                            speed: Duration(milliseconds: 100),
+                            cursor: '|',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(height: 10,),
-              Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: Image.network("https://i.imgur.com/mKjLX49.jpeg",
-                    height: 210,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 10,
-                    left: 10,
-                    child: Text( 'Reflect yourself\nIt\'s time for healing',
-                    style: GoogleFonts.dancingScript(
-                      fontSize:16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      shadows: [
-                            Shadow(
-                              blurRadius: 8,
-                              color: Colors.black.withOpacity(0.5),
-                              offset: Offset(1, 1),
-                            )
-                      ]
-                       ),
-                    )
-                    )
-                ],
-              ),
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text("Continue",
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 38,
-                    color: Color(0xFF5B3E37),
-                    fontWeight: FontWeight.bold
-                  ),
-                  )
-                ],
-              ),
-              SizedBox(height: 12,),
-              SizedBox(
-                height: 100,
-                child: entries.isEmpty?
-                Center(
-                  child: Text("No Entries Yet....",
-                  style: GoogleFonts.dancingScript(
-                    color: Color(0xFF5B3E37),
-                    fontSize: 22
-                    ),
-                  )
-                ):ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder:(context, index){
-                  final entry=entries[index];
-                  return  GestureDetector(
-                    onTap: () async{
-                      //on taping the card the editior with the exizting data
-                      final result=await Navigator.push(context, MaterialPageRoute(builder: (_)=>JournalEditorPage(initialData: entry,)));
-                     
-                        //after edit update the entry
-                      if(result!=null && result is Map<String,String>){
-                        setState(() {
-                          entries[index]=result;
-                        });
-                      }
-                    },
 
-                     child:   Container(
-                         width: 160,
-                         padding: EdgeInsets.all(12),
-                         decoration: BoxDecoration(
-                         color: const Color(0xFFE8E0DC),
-                         borderRadius: BorderRadius.circular(16),
-                         ),
-                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                // ✅ Journal Entry Section (no fixed height)
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(30),
+                    margin: const EdgeInsets.all(24),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5FAFD),
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 12,
+                          offset: const Offset(0, 6),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Welcome\nBack!",
+                          style: GoogleFonts.playfairDisplay(
+                            fontSize: 38,
+                            color: const Color(0xFF5B3E37),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+Center(
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(18),
+    child: Lottie.asset(
+      'assets/animations/writingpad.json',
+      height: 310,
+      width: 420,
+     
+      fit: BoxFit.cover,
+    ),
+  ),
+),
+
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              entry['title'] ?? '',
+                              "Continue",
                               style: GoogleFonts.playfairDisplay(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,//if thr text is too long to fit cut them and show ...
+                                fontSize: 38,
+                                color: const Color(0xFF5B3E37),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-
-                            SizedBox(height: 4,),
-
-                            //body preview
-                            Text(
-                                (entry['body'] ?? '').split('\n').first,//taking data form the bpdy if the body is empty then null if not break them into lines and take the first line
-                                  style: GoogleFonts.dancingScript(
-                                      color: Color(0xFF5B3E37),
-
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                            ),
-                                SizedBox(height: 4,),
-                                Text(
-                                  entry['date'] ?? '',
-                                  style: GoogleFonts.dancingScript(
-                                    fontSize: 12,
-                                     color: Color(0xFF5B3E37),
-                                    ),
-                                )
                           ],
-                         ),)
-                  );
-               
+                        ),
+                        const SizedBox(height: 12),
 
-               
-                  
-                  
-               
-                  } , 
-                  //giveing space between every item of the list
-                  separatorBuilder: (_, __) => const SizedBox(width: 12),
-                   itemCount: entries.length
-              )
-              ),
-              SizedBox(height: 10,),
-
-              Center(
-                child: Text(   "or Start a new one",
-                    style: GoogleFonts.playfairDisplay(
-                      fontSize: 30,
-                     color: Color(0xFF5B3E37),
-                      fontWeight: FontWeight.bold
-                            
-                      ),
-                ),
-              ),
-              SizedBox(height: 15,),
-              Center(
-                child: GestureDetector(
-                  onTap: _openEditior,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFF7B4B42),
-      shape: BoxShape.circle,
-
+                        // ✅ Entries list
+                        SizedBox(
+                          height: 100,
+                          child: entries.isEmpty
+                              ? Center(
+                                  child: Text(
+                                    "No Entries Yet....",
+                                    style: GoogleFonts.dancingScript(
+                                      color: const Color(0xFF5B3E37),
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                )
+                              : ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    final entry = entries[index];
+                                    return GestureDetector(
+                                      onTap: () async {
+                                        final result = await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => JournalEditorPage(
+                                              initialData: entry,
+                                            ),
+                                          ),
+                                        );
+                                        if (result != null && result is Map<String, String>) {
+                                          setState(() {
+                                            entries[index] = result;
+                                          });
+                                        }
+                                      },
+                                      child: Container(
+                                        width: 160,
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFE8E0DC),
+                                          borderRadius: BorderRadius.circular(16),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              entry['title'] ?? '',
+                                              style: GoogleFonts.playfairDisplay(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              (entry['body'] ?? '').split('\n').first,
+                                              style: GoogleFonts.dancingScript(
+                                                color: const Color(0xFF5B3E37),
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              entry['date'] ?? '',
+                                              style: GoogleFonts.dancingScript(
+                                                fontSize: 12,
+                                                color: const Color(0xFF5B3E37),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  separatorBuilder: (_, __) => const SizedBox(width: 12),
+                                  itemCount: entries.length,
+                                ),
+                        ),
+                        const SizedBox(height: 10),
+                        Center(
+                          child: Text(
+                            "or Start a new one",
+                            style: GoogleFonts.playfairDisplay(
+                              fontSize: 30,
+                              color: const Color(0xFF5B3E37),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        Center(
+                          child: GestureDetector(
+                            onTap: _openEditior,
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF7B4B42),
+                                shape: BoxShape.circle,
+                              ),
+                              padding: const EdgeInsets.all(10),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 28,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                    padding: EdgeInsets.all(10),
-                    child: Icon(Icons.add, color: Colors.white, size: 28,),
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
-      ),
+      );
+    },
+  ),
+),
     );
   }
 }

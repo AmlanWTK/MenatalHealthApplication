@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mental_health_ai/VisibilityDetector/slidefadeinonvisible.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Emergencypage extends StatelessWidget {
@@ -17,8 +19,12 @@ class Emergencypage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-      Padding(
+    return SlideFadeInOnVisible( 
+      duration: Duration(milliseconds: 800), 
+      offset: Offset(0, 2), 
+      curve: Curves.easeOut, 
+      visibilityKey: Key('emergency_page'),
+      child:  Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: Center(
           child: ConstrainedBox(
@@ -57,6 +63,7 @@ class Emergencypage extends StatelessWidget {
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFF7B4B42),
+                                  decoration: TextDecoration.none
                               ),
                             ),
                         
@@ -64,8 +71,8 @@ class Emergencypage extends StatelessWidget {
                             Text(''' Kaan Pete Roi is Bangladesh’s first emotional support helpline, offering a safe and anonymous space to talk. Volunteers are trained to listen with empathy — no judgment, just support when you need it most.
 It's completely free, confidential, and available when you feel overwhelmed.
 Whether you're feeling lost, anxious, or just need to be heard — someone is always ready to listen..''',
-                            style: GoogleFonts.dancingScript(fontSize: 22,fontWeight: FontWeight.bold,
-                                color: const Color(0xFF7B4B42), ),
+                            style: GoogleFonts.dancingScript(fontSize: 22,fontWeight: FontWeight.bold,  decoration: TextDecoration.none,
+                                color: Colors.blueGrey ),
                             ),
                             const SizedBox(height: 12),
                             // Motivational quote
@@ -79,7 +86,7 @@ Whether you're feeling lost, anxious, or just need to be heard — someone is al
                             ElevatedButton.icon(
                               onPressed: () => _makephonecall('88029130355'),
                               icon: const Icon(Icons.call, color: Colors.white),
-                              label:  Text("Call Landline", style: GoogleFonts.dancingScript(color: Colors.white, fontWeight: FontWeight.bold),),
+                              label:  Text("Call Landline", style: GoogleFonts.dancingScript(color: Colors.white, fontWeight: FontWeight.bold,  decoration: TextDecoration.none),),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blueGrey,
                                 padding: const EdgeInsets.symmetric(
@@ -95,8 +102,8 @@ Whether you're feeling lost, anxious, or just need to be heard — someone is al
                               onPressed: () =>
                                   _makephonecall('+8801700758590'),
                               icon: const Icon(Icons.phone_android,
-                                  color: Colors.white),
-                              label:  Text("Call Mobile",style: GoogleFonts.dancingScript(color: Colors.white),),
+                                  color: Colors.white,),
+                              label:  Text("Call Mobile",style: GoogleFonts.dancingScript(color: Colors.white,  decoration: TextDecoration.none),),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blueGrey,
                                 padding: const EdgeInsets.symmetric(
@@ -126,7 +133,7 @@ Whether you're feeling lost, anxious, or just need to be heard — someone is al
                                     }
                                   },
                                   child: Text('support@kaanpeteroi.org',
-                                  style: GoogleFonts.playfairDisplay(fontSize: 18, color: Colors.blueGrey, fontWeight: FontWeight.bold),
+                                  style: GoogleFonts.playfairDisplay(fontSize: 18, color: Colors.blueGrey, fontWeight: FontWeight.bold,  decoration: TextDecoration.none),
                                   ),
                                 )
                               ],
@@ -141,87 +148,63 @@ Whether you're feeling lost, anxious, or just need to be heard — someone is al
                   Expanded(
                     flex: 1,
 
-                    child:Stack(
-                      children: [
-                         ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                        topLeft: Radius.circular(15),
-                        bottomLeft: Radius.circular(15)
-                      ),
-                      child: Image.network(
-                        'https://i.imgur.com/LO9Y9ok.jpeg',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
-                      ),
-                    ),
-
-                 Align(
-  alignment: Alignment.center,
-  child: ConstrainedBox(
-    constraints: BoxConstraints(maxWidth: 450), // or any width you prefer
-    child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: Color(0xFFB2EBF2),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          )
-        ],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min, // ⬅ Important!
-        children: const [
-          Icon(Icons.format_quote, color: Colors.deepOrange),
-          SizedBox(width: 10),
-          Flexible(
-            child: Text(
-              "Talking helps. You’re not alone. We’re here to listen.",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
-      ),
-    ),
-  ),
-)
-,
-                    
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 20),
-                        child: Container(
-                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 8,
-                                offset: Offset(0, 4),
-                              )
-                            ]
-                          ),
-                          child: Text('''Reaching out is not a sign of weakness — it’s a step toward healing.\nSometimes, the bravest thing you can do is ask for help.\n You don’t have to go through it alone.''',
-                          style: GoogleFonts.dancingScript(
-                             fontSize: 20,
-                color: Colors.blueGrey.shade800,
-                decoration: TextDecoration.none
-                          ),
-                          textAlign: TextAlign.center,
-                          ),
+                    child:Center(
+                      child: Stack(
+                        children: [
+                           ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topLeft: Radius.circular(15),
+                          bottomLeft: Radius.circular(15)
                         ),
+                        child: Lottie.asset(
+                          'assets/animations/calling1.json',
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
                         ),
-                    ),
-                      ],
+                      ),
+                      
+                                       Align(
+                        alignment: Alignment.center,
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(maxWidth: 450), // or any width you prefer
+                         
+                        ),
+                      )
+                      ,
+                      
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Container(
+                             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 8,
+                                  offset: Offset(0, 4),
+                                )
+                              ]
+                            ),
+                            child: Text('''Reaching out is not a sign of weakness — it’s a step toward healing.\nSometimes, the bravest thing you can do is ask for help.\n You don’t have to go through it alone.''',
+                            style: GoogleFonts.dancingScript(
+                               fontSize: 20,
+                                      color: Colors.blueGrey.shade800,
+                                      decoration: TextDecoration.none
+                            ),
+                            textAlign: TextAlign.center,
+                            ),
+                          ),
+                          ),
+                      ),
+                        ],
+                      ),
                     )
                     
                   )
@@ -230,7 +213,11 @@ Whether you're feeling lost, anxious, or just need to be heard — someone is al
             ),
           ),
         ),
+      ),
       );
+
+
+     
   
   }
 

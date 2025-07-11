@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mental_health_ai/Emergency/emergencypage.dart';
-import 'package:mental_health_ai/GratitudeWall/gratitideinputtest.dart';
+import 'package:mental_health_ai/GratitudeWall/gratitideentrypage.dart';
 import 'package:mental_health_ai/GratitudeWall/gratitudeopeningsection.dart';
 import 'package:mental_health_ai/GratitudeWall/gratitudewall.dart';
 import 'package:mental_health_ai/HomePageDesign/InnerCompass/innercompassai.dart';
@@ -16,9 +16,13 @@ import 'package:mental_health_ai/HomePageDesign/SleepSection/sleepsection.dart';
 import 'package:mental_health_ai/HomePageDesign/SleepSection/sleeptabsection.dart';
 import 'package:mental_health_ai/HomePageDesign/wellnesssection.dart';
 import 'package:mental_health_ai/Notepad/intropage.dart';
+import 'package:mental_health_ai/Notepad/journalpage.dart';
 import 'package:mental_health_ai/Notepad/notepadsection.dart';
+//import 'package:mental_health_ai/appbar/aranyakappbar.dart';
 import 'package:mental_health_ai/authentication/authselectionpage.dart';
+import 'package:mental_health_ai/authentication/loginpage.dart';
 import 'package:mental_health_ai/authentication/signuppage.dart';
+import 'package:mental_health_ai/authentication/successfulpage.dart';
 import 'package:mental_health_ai/homepage.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -53,11 +57,16 @@ class MyApp extends StatelessWidget {
     final user=supabase.auth.currentUser;//check if the user session exists
    return MaterialApp(
     debugShowCheckedModeBanner: false,
-   // home: user!=null? GratitudeEntryPage():Authselectionpage(),
+    home: user!=null? Homepage1(): AuthSelectionPage(),
+
+  //home:Homepage1(),
+  
+  // home: Gratitudeopeningsection(),
+    //home: LoginSuccess(),
   // home: GratitudeEntryPage(),
   //home: Gratitudeopeningsection(),
- //home: Homepage1(),
- home: InnerCompassSection(),
+ //home: AuthSelectionPage(),
+//home: InnerCompassSection(),
  //home: Innercompassexercise(),
  //home: Emergencypage(),
 //  home: IntroPage(),

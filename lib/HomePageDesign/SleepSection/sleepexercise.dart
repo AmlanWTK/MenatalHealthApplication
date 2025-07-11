@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mental_health_ai/VisibilityDetector/slidefadeinonvisible.dart';
 import 'package:mental_health_ai/vimeocard/vimeovideocard.dart';
 
-class Innercompassexercise extends StatelessWidget {
-  const Innercompassexercise({super.key});
+class Sleepexercise extends StatelessWidget {
+  const Sleepexercise({super.key});
 
   @override
   Widget build(BuildContext context) {

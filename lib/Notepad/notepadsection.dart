@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mental_health_ai/Notepad/intropage.dart';
+import 'package:mental_health_ai/VisibilityDetector/slidefadeinonvisible.dart';
 
 class NotePadSection extends StatelessWidget {
   const NotePadSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SlideFadeInOnVisible(
+       duration: Duration(milliseconds: 800),
+        offset: Offset(0, 2), 
+        curve: Curves.easeOut, 
+        visibilityKey: Key('notepad_section'),
+        child: 
+    Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
         child: Container(
@@ -61,7 +69,7 @@ This notebook is here to hold your thoughts, your emotions, and your voice.
 No judgment — just a safe place for self-expression.
 Start wherever you are. Just begin.''',
                 style: GoogleFonts.dancingScript(
-                  color: Color(0xFF7B4B42),
+                  color: Colors.blueGrey,
                      fontWeight: FontWeight.bold,
                      fontSize: 28 ,
                      decoration: TextDecoration.none
@@ -97,8 +105,8 @@ Start wherever you are. Just begin.''',
     children: [
       ClipRRect(
         borderRadius: BorderRadius.circular(20),
-        child: Image.network(
-          'https://i.imgur.com/myQnbaw.jpeg',
+        child: Lottie.asset(
+          'assets/animations/diary.json',
           fit: BoxFit.cover,
           height: double.infinity,
           width: double.infinity,
@@ -141,6 +149,10 @@ Start wherever you are. Just begin.''',
          ),
         ),
       ),
-    );
+    ) ,
+        );
+    
+    
+   
   }
 }

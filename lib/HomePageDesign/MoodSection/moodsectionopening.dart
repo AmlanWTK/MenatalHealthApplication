@@ -1,15 +1,24 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mental_health_ai/HomePageDesign/MoodSection/dailymood.dart';
+import 'package:mental_health_ai/VisibilityDetector/slidefadeinonvisible.dart';
 
 class Moodsectionopening extends StatelessWidget {
   const Moodsectionopening({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500,
+    return SlideFadeInOnVisible(
+      
+      duration: Duration(milliseconds: 800), 
+      offset: Offset(0, 0.2), 
+      curve: Curves.easeOut, 
+      visibilityKey: Key('mood_section'),
+      child: 
+    SizedBox(
+      height: 650,
       width: double.infinity,
       child: Stack(
         children: [
@@ -18,7 +27,7 @@ class Moodsectionopening extends StatelessWidget {
             top: 0,
             left: 0,
             right: 0,
-            height: 500,
+            height: 650,
             child: ClipRRect(
               child: Stack(
                 fit: StackFit.expand,
@@ -43,7 +52,7 @@ class Moodsectionopening extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(40.0),
               child: Container(
-                height: 400,
+                height: 580,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.blueGrey,
@@ -65,19 +74,33 @@ Color(0xFFFFFDF9), // Creamy white
                   children: [
 
                      Expanded(
-                      flex: 1,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                color: Colors.black12,
+                blurRadius: 20,
+                offset: Offset(0, 10),
+                            )
+                          ],
                         ),
-                        child: Image.network(
-                          "https://i.imgur.com/qdIiPMe.jpeg",
-                          fit: BoxFit.cover,
+                        clipBehavior: Clip.antiAlias, // Clip rounded corners
+                        child: SizedBox(
+                          width: double.infinity,
                           height: double.infinity,
+                          child: Lottie.asset(
+                            'assets/animations/trackingemotion.json',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                    ),
+                            ),
+                          ),
+                        ),
             
                     const SizedBox(width: 10),
                     // 📝 Right Text Section
@@ -94,7 +117,7 @@ Color(0xFFFFFDF9), // Creamy white
                             Text(
                               "Track Your Emotions Daily to Understand, Heal, and Grow Deeper",
                               style: GoogleFonts.playfairDisplay(
-                                fontSize: 30,
+                                fontSize: 38,
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFF7B4B42),
                                 decoration: TextDecoration.none,
@@ -104,8 +127,8 @@ Color(0xFFFFFDF9), // Creamy white
 
                             // 💬 Description
                             Text(
-                              "By tracking your mood each day, you begin to notice patterns in your emotional highs and lows. This awareness helps you understand what triggers stress or happiness, allowing you to respond more wisely.",
-                              style: GoogleFonts.dancingScript(
+                              "By tracking your mood each day, you begin to notice patterns in your emotional highs and lows. This awareness helps you understand what triggers stress or happiness, allowing you to respond more wisely. Over time, you develop greater emotional resilience and find healthier ways to cope with challenges. Consistent mood tracking also encourages mindfulness, helping you stay present and grounded throughout your day."
+                              ,style: GoogleFonts.dancingScript(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blueGrey,
@@ -153,6 +176,10 @@ Color(0xFFFFFDF9), // Creamy white
           ),
         ],
       ),
-    );
+    ),
+      );
+    
+    
+    
   }
 }
